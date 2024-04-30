@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+}
+
+#root {
+    background-color: #457B9D;
+    min-height: 100vh;
+    width: 99.5vw;
+} 
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    /* outline: 1px solid red; */
+    color: #ECECEC;
+}
+
+.header-welcome span {
+    font-size: 22px;
+}
+
+.header-welcome h1 {
+    line-height: 32px;
+}
+
+.fa-bell {
+    padding-top: 8px;
+    font-size: 30px;
+}
+
+.main {
+    margin-top: 15px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    padding: 0 10px;
+    padding-top: 30px ;
+    padding-bottom: 75px;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+#incoming-deadline {
+    border: none;
+    border-radius: 16px;
+    background-color: #F04451;
+    color: white;
+    width: 95%;
+    /* margin-top: 0px; */
+    margin: 10px;
+    padding: 10px 0;
+}
+
+#incoming-deadline > * {
+    margin: 0 20px;
+}
+
+#incoming-deadline h4 {
+    font-size: larger;
+}
+
+.assignment {
+    text-align: right;
+}
+
+.team-name {
+    font-weight: bold;
+}
+
+
+.progress progress {
+    width: 100%;
+    height: 30px;
+    /* margin-bottom: -100px; */
+    margin-left: -2px;
+    accent-color: white;
+}
+
+.value {
+    text-align: end;
+    margin-top: -5px;
+}
+
+.ongoing-project {
+    width: 95%;
+    min-height: 30vh;
+}
+
+.ongoing-container {
+    width: 100%;
+}
+
+.ongoing-menu {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.ongoing-menu .headline {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ongoing-menu a {
+    color: black;
+}
+
+.ongoing-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 10px;
+    margin-top: 10px;
+}
+
+.ongoing-items {
+    width: 48%;
+    color: white;
+    border-radius: 15px;
+}
+
+.ongoing-items > * {
+    margin : 5px;
+    margin-right: 8px;
+}
+
+.items-menu {
+    font-weight: 200;
+    padding-top: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deadline {
+    padding-left: 6px;
+}
+
+.items-menu i {
+    font-size: large;
+    margin-right: 3px;
+}
+
+.items-profile {
+    margin-bottom: -15px;
+}
+
+.items-profile * {
+    text-align: end;
+    font-size: small;
+}
+
+.items-profile h4 {
+    font-size: 15px;
+}
+
+.ongoing-items .progress {
+    margin-left: 10px;
+    padding-top: 12px;
+}
+
+.ongoing-items .progress progress {
+    height: 24px;
+}
+
+.ongoing-items .progress p {
+    font-size: 14px;
+}
+
+#drawer {
+    outline: 1px solid #457B9D;
+    width: 100vw;
+    min-height: 50vh;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-bottom: 75px;
+    display: none;
+}
+
+.drawer-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.drawer-container i {
+    color: #858585;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: end;
+    width: 85%;
+}
+
+.drawer-content {
+    width: 87%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+
+.drawer-profile {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.drawer-profile img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.drawer-profile .profile-leader {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.drawer-profile a {
+    color: #457B9D;
+}
+
+.drawer-content p {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+}
+
+
+.detail-button {
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: large;
+    color: white;
+    height: 40px;
+    background-color: #457B9D;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

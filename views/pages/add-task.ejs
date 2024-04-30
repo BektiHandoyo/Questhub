@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="/css/add-task.css">
+    <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script> -->
+</head>
+<body>
+    <form id="root" method="post" action="/<%= team_id %>/api/create/task">
+        <header>
+            <a href="/my-team/<%= team_id %>">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Add Task</h1>
+            <button type="submit" id="check-button">
+                <i id="check-icon" class="fas fa-check"></i>
+            </button>
+        </header>
+        <% if (message != '') { %>
+            <p class="error-message"><%- message %></p>
+        <% } %>
+        <main>
+            <div class="form-element">
+                <label for="task-name">Task Name</label>
+                <p>Enter a Name that describes the purpose of the task. Example: Create UI for home page</p>
+                <input type="text" id="task-name" name="name" class="form-input" placeholder="Task Name">
+            </div>
+            <div class="form-element">
+                <label for="description">Task Description</label>
+                <p>(Optional) Describe the details of this task</p>
+                <input type="text" id="description" name="description" class="form-input" placeholder="Task Description">
+            </div>
+            <div class="form-element">
+                <label for="deadline">Deadline</label>
+                <input type="date" id="deadline" name="deadline" class="form-input" placeholder="Pick Date">
+            </div>
+            <div class="form-element">
+                <label>Tasks Assignment</label>
+                <p>Pick your friend to work in the tasks</p>
+                <% teamMember.forEach(member=> { %>
+                    <div class="assignment-input">
+                        <input type="checkbox" id="assignment" name="<%= member.member_id %>" class="assignment">
+                        <label for="assignment" class="assignment-detail">
+                            <img src="<%= profilePictureURL %>/<%= member.profile_picture %>" alt="">
+                            <div>
+                                <h3><%- member.name %></h3>
+                                <p><%- member.email %></p>
+                            </div>
+                        </label>
+                    </div>
+                <% }) %>
+                
+            </div>
+        </main> 
+    </form>
+</body>
+<!-- <script src="../assets/isCompleted.js"></script> -->
+</html>

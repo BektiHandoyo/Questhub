@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koalabora's Page</title>
+    <link rel="stylesheet" href="/css/team.css">
+    <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="root">
+        <header>
+            <nav>
+                <a href="/my-team"><i class="fas fa-arrow-left"></i></a>
+                <h4>Perjalanan Mencari Rempah-Rempah di Sekitar Wonogiri</h4>
+                <% if (isAdmin) { %>
+                    <a href="/<%= team_id %>/add/tasks"><i class="fas fa-plus"></i></a>
+                <% } %>
+            </nav>
+            <div class="member-list">
+                <div class="list-content">
+                    <% teamMembersData.forEach(teamMember => { %>
+                        <div class="member-item">
+                            <img class="member-picture" src="<%= profilePictureURL %>/<%= teamMember.image %>" alt="">
+                            <p><%- teamMember.name %></p>
+                        </div>    
+                    <% }) %>
+                    
+                    <% if (isAdmin) { %>
+                        <a class="add-member" href="/<%=team_id%>/add/member">
+                            <div>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <p>Add Member</p>
+                        </a>    
+                    <% } %>
+
+                </div>
+            </div>
+            <% if (isAdmin) { %>
+                <div class="leader-button">
+                    <a href="/<%= team_id %>/add/tasks" class="add-task">
+                        <i class="fas fa-tasks"></i>
+                        Add Tasks
+                    </a>
+                    <a href="" class="add-task">
+                        <i class="fas fa-check"></i>
+                        Finish Team
+                    </a>
+                </div>
+            <% } %>
+        </header>
+        <div class="container">
+            <% if (tasksData.length == 0) { %>
+                <h1 style="text-align: center; width: 70%; padding-top: 30px; color: gray; font-weight: bold;">No Assignments added yet</h1>
+            <% } %>
+            <% tasksData.forEach(task => { %>
+                <div class="team-task">
+                    <div class="deadline">
+                        <%- task.deadline %>
+                    </div>
+                    <div class="task-name">
+                        <h3><%- task.name %></h3>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div> 
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+nav {
+    position: fixed;
+    bottom: 0;
+    background-color: #ECECEC;
+    width: 100%;
+    height: 60px;
+    /* display: none; */
+}
+
+.nav {
+    display: flex;
+    height: 110%;
+    /* display: none; */
+}
+
+.nav-item {
+    display: flex;
+    list-style: none;
+    margin: auto;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #457B9D;
+    font-size: 12px;
+}
+
+.nav-item a i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-item a * {
+    display: block;
+    text-align: center;
+    
+}

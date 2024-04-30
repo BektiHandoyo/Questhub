@@ -1,0 +1,69 @@
+<%- include('../../partials/nav-app.ejs') %>
+        <h2 class="title">Settings</h2>
+        <div class="user-profile">
+            <img src="<%= profilePictureURL %>/<%= userData.profile_picture %>" alt="">
+            <div class="profile-data">
+                <h3 class="username"><%- userData.name %></h3>
+                <p class="email" style="margin: 5px 0 10px;"><%- userData.email %></p>
+                <form action="/api/profile" method="post" enctype="multipart/form-data">
+                    <label for="avatar">
+                        <i class="fas fa-camera"></i> Change Picture
+                    </label>
+                    <input type="file" style="display: none;" onchange="this.form.submit()" name="avatar" id="avatar"></input>
+                </form>
+            </div>
+        </div>
+        <% if (message != '') { %>
+            <p style="margin-top: 10px;" class="error-message"><%- message %></p>
+        <% } %>
+        <div class="change-settings">
+            <div class="data-account">
+                <h4>Account</h4>
+                <ul>
+                    <a href="./change-data/index.html"><li><i class="far fa-envelope settings-item"></i>Email<i class="fas fa-angle-right"></i></li></a>
+                    <a href="./change-data/index.html"><li><i class="far fa-user settings-item"></i>Username<i class="fas fa-angle-right"></i></li></a>
+                    <a href="./change-data/index.html"><li><i class="fas fa-lock settings-item"></i>Change Password<i class="fas fa-angle-right"></i></li></a>
+                    <div id="logout"><li><i class="fas fa-power-off settings-item" style="color: red;"></i>Log Out<i class="fas fa-angle-right"></i></li></div>
+                </ul>
+            </div>
+            <div class="notification">
+                <h4>Notification</h4>
+                <div>
+                    <div>
+                        <i class="far fa-bell settings-item"></i>
+                        <span>Allow Notification</span>                 
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="help">
+                <h4>Help</h4>
+                <div>
+                    <i class="fas fa-question settings-item" style="width: 15px; height: 15px;text-align: center;"></i>
+                    <div>
+                        <p style="font-weight: bold;">Need Helps ?</p>
+                        <p style="font-size: small; font-weight: bold;">Contact Us !</p>
+                    </div>
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="alert-background">
+        <div class="log-out-alert">
+            <div class="text">
+                Are you sure you want to log out of this account?
+            </div>
+            <div class="choice">
+                <button id="yes" style="border-left: none;">Yes</button>
+                <button id="no" style="border-right: none;">No</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/js/logout.js"></script>
+</html>

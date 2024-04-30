@@ -1,0 +1,43 @@
+<%- include('../partials/nav-app.ejs') %>
+    <header>
+        <a class="fas fa-bars" id="menu-icon"></a>
+    </header>
+    <div id="page-nav">
+        <div class="menu-item"><a href="/my-team/create"><i class="fas fa-plus"></i> Create Team</a></div>
+    </div>  
+    <div class="container">
+        <% rooms.forEach(room => { %>
+            <div class="team-items" onclick="window.location.assign('/my-team/<%= room.id %>')">
+                <div class="team-content">
+                    <div class="team-image">
+                        <img src="/img/team-background/<%= room.background_img %>" alt="">
+                    </div>
+                    <div class="team-detail">
+                        <div class="team-name">
+                            <h4><%- room.name %></h4>
+                            <i class="fas fa-angle-down" style="font-size: 20px;"></i>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-profile">
+                                <% room.profile_pictures.forEach(picture => { %>
+                                    <img src="<%= profilePictureURL %>/<%- picture %>" alt="">
+                                <% }) %>
+                            </div>
+                            <p class="member-list" style="font-size: 12px;">
+                                <%- room.leader_name %> and <%= room.total_member %> other  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="team-desc">
+                        <h4>Description</h4>
+                        <p><%- room.description %></p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+</body>
+<script src="/js/desc-team.js"></script>
+<script src="/js/menu-icon.js"></script>
+</html>

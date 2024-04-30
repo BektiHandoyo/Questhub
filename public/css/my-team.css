@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+    
+}
+
+#root {
+    width: 99.8vw;
+    min-height: 100vh ;
+    padding-bottom: 65px;
+}
+
+header {
+    display: none;
+    position: fixed;
+    width: 99.8vw;
+    box-shadow: 0 2px 2px -2px gray;
+    height: 50px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background-color: white;
+}
+
+header a {
+    padding-right: 10px;
+    text-decoration: none;
+    color: #457B9D;
+}   
+
+#page-nav {
+    padding-top: 50px;
+    display: none;
+}
+
+.menu-item {
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.menu-item a {
+    margin-left: 15px;
+    color: black;
+    text-decoration: none;
+    font-size: large;
+    display: inline-block;
+    width: 100%;
+    /* outline: 1px solid red; */
+}
+
+.fa-arrow-left {
+    font-size: 28px;
+    padding-left: 15px;
+}
+
+
+.fa-bars {
+    font-size: 28px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.container {
+    width: 99.8vw;
+    min-height: 99.8vh;
+    padding-top: 67px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: -1;
+}
+
+.team-items {
+    border-radius: 15px;
+    padding-bottom: 0;
+    padding-top: 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+    width: 90%;
+    max-width: 350px;
+    margin-bottom: 20px;
+}
+
+.team-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-image img {
+    width: 95%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.team-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.team-detail { 
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 0 10px;
+    padding-top: 11px;
+}
+
+.team-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.team-member {
+    margin: 8px 0 12px;
+    display: flex;
+    align-items: center;
+}
+
+.member-profile {
+    display: flex;
+    margin-right: 10px;
+}
+
+.member-profile img:not(:first-child){
+    margin-left: -5px;
+}
+
+.member-profile img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1.5px solid gray;
+}
+
+.team-desc {
+    padding: 10px;
+    padding-top: 0;
+    display: none;
+}
+
+.team-desc p {
+    padding-top: 3px;
+    text-align: justify;
+    font-size: 14px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Team</title>
+    <link rel="stylesheet" href="/css/create-team.css">
+    <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="root" method="post" action="/api/team/create">
+        <header>
+            <a href="/my-team">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Create Your Team</h1>
+            <button type="submit" id="check-button">
+                <i id="check-icon" class="fas fa-check"></i>
+            </button>
+        </header>
+        <main>
+            <div class="form-element">
+                <label for="name">Select Your Team Name</label>
+                <p>Use a name that describes team's goals</p>
+                <p>example : <b>Web Application Creation Project</b></p>
+                <input type="text" id="username" name="name" class="form-input" placeholder="Your Team's Name">
+            </div>
+            <div class="form-element">
+                <label for="confirmation">Description</label>
+                <p>Describe your Team's Goal here</p>
+                <textarea type="text" id="confirmation" name="description" style="min-height: 130px; overflow: scroll; resize: none;" class="form-input" placeholder="Team's Description"></textarea>        
+            </div>
+        </main> 
+    </form>
+</body>
+<script>
+    const input = document.getElementById('username');
+    const confirmation = document.getElementById('confirmation')
+
+    setInterval(() => {
+        const input = document.getElementById('username');
+        const checkButton = document.getElementById('check-button');
+        const checkIcon = document.getElementById('check-icon')
+        const confirmation = document.getElementById('confirmation')
+        if(input.value.length > 0){
+            checkButton.style.visibility = "visible";
+            if(confirmation.value.length <= 0){
+                checkIcon.style.color = "#D6D6D6";
+                checkButton.disabled = true;
+            } else {
+                checkIcon.style.color = "black";
+                checkButton.disabled = false;
+            }
+        } else {
+            checkButton.style.visibility = "hidden";
+        }
+    }, 2000)
+</script>
+</html>

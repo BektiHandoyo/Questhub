@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="../index.html">
+            <img src="/img/questhub-logo 1.png" alt="" class="web-logo">
+        </a>
+    </nav>
+    <main>
+        <h1 class="sign-in-text">Sign Up to Questhub </h1>
+        <!-- <i class="fa-solid fa-home"></i> -->
+        <form action="/api/register" method="post">
+            <% if (message != '') { %>
+                <p class="error-message"><%- message %></p>
+            <% } %>
+            <input type="text" name="username" id="username" placeholder="Username" 
+                   class="input-form" required 
+            >
+            <input type="email" name="email" id="email" placeholder="Email" 
+                   class="input-form" required 
+            >
+            <div class="input-form password-form">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <i class="far fa-eye-slash" id="togglePassword"></i>
+            </div>
+
+            <input class="input-form password-form"  type="password" name="pass_conf" id="password-confirmation" placeholder="Konfirmasi Password" required>
+
+ 
+            <div class="remember-me">
+                <input type="checkbox" name="agreement" id="terms-and-condition"><label for="terms-and-condition">I agree to <a href="">Terms and Conditions</a></label>
+            </div>
+
+            <button type="submit" class="sign-in">Sign Up</button>
+        </form>
+        <div class="or-session">
+            <span class="line"></span>
+            <span 
+                style="
+                    color: rgb(107 114 128 / var(--tw-text-opacity));
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: medium;
+                    font-weight: 700;
+                    color: #9DA0A4;
+                "
+            >
+            OR</span>
+            <span class="line"></span>
+        </div>
+        <button class="google-button">
+            <img src="/img/static/devicon_google.png" alt=""><span>Continue With Google</span>
+        </button>
+
+        <div class="reset-password">
+            <p>Already have an account ?<a href="/login"> Log In</a></p>
+        </div>
+    </main>
+</body>
+<script src="/js/password.js"></script>
+</html>

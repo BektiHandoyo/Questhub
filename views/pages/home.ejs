@@ -1,0 +1,119 @@
+<%- include('../partials/nav-app.ejs') %>
+        <main>
+            <header>
+                <div class="header-container">
+                    <div class="header-welcome">
+                        <span>Welcome Aboard,</span>
+                        <h1><%= userData.name %></h1>
+                    </div>
+                    <a href="./notification/index.html" style="color: white;">
+                        <i class="far fa-bell"></i>
+                    </a>
+                </div>
+            </header>
+            <div class="main">
+                <div class="main-container">
+                    <div id="incoming-deadline">
+                        <h4>Incoming Deadline</h4>
+                        <div class="assignment">
+                            <p class="team-name">Makalah Sejarah</p>
+                            <p>You, Dhavin, Bekti, Indra</p>
+                        </div>
+                        <div class="progress">
+                            <p>Progress</p>
+                            <progress id="file" value="75" max="100"></progress>
+                            <p class="value">75%</p>
+                        </div>
+                    </div>
+                    <div class="ongoing-project">
+                        <div class="ongoing-container">
+                            <div class="ongoing-menu">
+                                <span class="headline">Proyek Berjalan</span>
+                                <a href="#">Lihat Semua</a>
+                            </div>
+                            <div class="ongoing-content">
+                                <div class="ongoing-items" style="background-color: #FFC15B;">
+                                    <div class="items-menu">
+                                        <span class="deadline">27 Oct, 2024</span>
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                    <div class="items-profile">
+                                        <h4>Makalah Sejarah</h4>
+                                        <p>You, Dhavin, Raya, Indra</p>
+                                    </div>
+                                    <div class="progress">
+                                        <p>Progress</p>
+                                        <progress id="file" value="75" max="100"></progress>
+                                        <p class="value">75%</p>
+                                    </div>
+                                </div>
+                                <div class="ongoing-items" style="background-color: #8ECAE6;">
+                                    <div class="items-menu">
+                                        <span class="deadline">27 Oct, 2024</span>
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                    <div class="items-profile">
+                                        <h4>Prototype PKK</h4>
+                                        <p>You, Dhavin, Raya, Indra</p>
+                                    </div>
+                                    <div class="progress">
+                                        <p>Progress</p>
+                                        <progress id="file" value="75" max="100"></progress>
+                                        <p class="value">75%</p>
+                                    </div>
+                                </div>
+                                <div class="ongoing-items" style="background-color: #F7688C;">
+                                    <div class="items-menu">
+                                        <span class="deadline">27 Oct, 2024</span>
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                    <div class="items-profile">
+                                        <h4>Sesorah Basa Jawa</h4>
+                                    </div>
+                                    <div class="progress">
+                                        <p>Progress</p>
+                                        <progress id="file" value="75" max="100"></progress>
+                                        <p class="value">75%</p>
+                                    </div>
+                                </div>
+                                <div class="ongoing-items" style="background-color: #829CBC;">
+                                    <div class="items-menu">
+                                        <span class="deadline">27 Oct, 2024</span>
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                    <div class="items-profile">
+                                        <h4>Makalah Sejarah</h4>
+                                    </div>
+                                    <div class="progress">
+                                        <p>Progress</p>
+                                        <progress id="file" value="75" max="100"></progress>
+                                        <p class="value">75%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="drawer">
+                <div class="drawer-container">
+                    <i class="fa-solid fa-xmark" id="drawer-close"></i>
+                    <div class="drawer-content">
+                        <h2 class="drawer-title">Makalah Sejarah</h2>
+                        <div class="drawer-profile">
+                            <img src="/img/home/9f9936fa68f41c17b224a071bea60ef2.png" alt="">
+                            <span class="profile-leader">Koala Wilson</span>
+                            <a href="">and 5 more</a>
+                        </div>
+                        <p>
+                            Setelah Jepang menyerah pada 14 Agustus 1945, Indonesia menghadapi periode transisi yang penting dalam perjuangan merebut kemerdekaan. Pasukan Sekutu tiba di Indonesia, mengendalikan berbagai wilayah. Namun, hubungan antara pihak Sekutu dan Republik Indonesia semakin tegang, terutama karena upaya Belanda untuk mengendalikan wilayah dan mengembalikan kekuasaan kolonialnya.
+                        </p>
+                        <a href="#" class="detail-button">See Detail</a>
+                    </div>
+                </div>   
+            </div>
+        </main>
+    </div>
+</body>
+<script src="/js/drawer-home.js"></script>
+</html> 
