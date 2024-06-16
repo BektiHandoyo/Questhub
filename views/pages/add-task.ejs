@@ -1,9 +1,22 @@
+<% function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+} %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Password</title>
+    <title>Add Task</title>
     <link rel="stylesheet" href="/css/add-task.css">
     <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script> -->
@@ -35,7 +48,7 @@
             </div>
             <div class="form-element">
                 <label for="deadline">Deadline</label>
-                <input type="date" id="deadline" name="deadline" class="form-input" placeholder="Pick Date">
+                <input type="date" min="<%= formatDate(new Date()) %>" id="deadline" name="deadline" class="form-input" placeholder="Pick Date">
             </div>
             <div class="form-element">
                 <label>Tasks Assignment</label>

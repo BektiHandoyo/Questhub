@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="/css/task-detail.css">
+    <script src="https://kit.fontawesome.com/3ef4bc1872.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <header>
+        <a href="/my-team/<%= team_id %>" class="fas fa-arrow-left"></a>
+        <h4 class="room-name"> </h4>
+        <a href="" class="fas fa-ellipsis-v"></a>
+    </header>
+    <div id="upload-notification" style="display: none;">
+        <i class="fas fa-info-circle"></i>
+        <span>Wait, Your File Being Uploaded</span> 
+    </div>
+    <main>
+        <h1 class="task-title"><%- task.name %></h1>
+        <div class="task-giver">
+            <span class="giver-name"><%= leaderName %></span>
+            <i>•</i>
+            <span class="task-started"><%= task.createdAt %></span>
+        </div>
+        <p class="task-deadline"><b>Deadline:</b><%= task.deadline %></p>    
+        <div class="task-desc">
+            <div id="desc-dropdown" class="desc-title">
+                <h3>Desciption</h3>
+                <i id="icon-dropdown" class="fas fa-angle-down"></i>
+            </div>
+            <p id="task-desc">
+                <%- task.description %>
+            </p>
+        </div>
+        <% if (isAssign) { %> 
+        <form class="assignment">
+                <div class="uploaded-file" id="uploaded-file" style="margin-bottom: 15px;">
+                    <h3 class="assignment-status">Upload Your Work</h3>
+                                   
+                </div>
+
+                <input id="file-submition" type="file" name="file" multiple>
+                <input type="submit" name="" id="task-submition">
+                
+                <div class="form-element">
+                    <label for="confirmation">Description</label>
+                    <p>Describe your Task Submition</p>
+                    <textarea type="text" id="descriptition" name="description" style="min-height: 130px; overflow: scroll; resize: none;" class="form-input" placeholder="Team's Description"></textarea>        
+                </div>
+
+                <div class="button-section">
+                    <label for="file-submition" class="button file" style="margin-bottom: 15px;">
+                        <i class="fas fa-plus"></i>
+                        Add Or Create
+                    </label>
+                    <label for="task-submition" class="button submition">
+                        <i class="fas fa-plus"></i>
+                        Submit
+                    </label>
+                </div>
+        </form>
+        <% } %>
+    </main>
+    
+    <div class="uploaded-file" id="submition-history">
+        <h3 class="assignment-status">Submition History</h3>
+        
+        <% if (taskSubmitionList.length == 0) { %>
+            <p style="font-size: large;">No files have been uploaded yet</p>
+        <% } %>
+
+        <% taskSubmitionList.forEach(taskSubmition => { %>
+            <div class="submition-group">
+                <div class="file-sender">
+                    <img src="<%=  profilePictureURL %>/<%= taskSubmition.profilepicture %>" alt="" srcset="">
+                    <span class="sender-name"><%- taskSubmition.username %></span>•
+                    <span class="sender-date"><%= taskSubmition.createdAt %></span>
+                    
+                    <% if (taskSubmition.description.length != 0) { %>
+                        <i class="fas fa-angle-right"></i>
+                    <% } %>
+                </div>
+
+                <% taskSubmition.data.forEach(submitionFile => { %>
+                    <div class="file-display" data="<%= submitionFile.file.split('/').slice(-2).join('/') %>">
+                        <i class="far fa-file" id="file-type"></i>
+                        <div class="file-data">
+                            <a href="<%= submitionFile.file %>"><%- (submitionFile.file.split('/')[submitionFile.file.split('/').length - 1]).split('-').slice(-1) %></a>
+                            <span><%= `${submitionFile.file_type.split('/').join(" ")} File` %></span>
+                        </div>
+                        <% if (currentUserId == taskSubmition.member_id) { %>
+                            <i class="fas fa-x" class="delete-file" onclick="deleteProcess(this)"></i>
+                        <% } %>
+                    </div> 
+                <% }) %>
+                
+                <div class="submition-desc">
+                    <h3>Description</h3>
+                    <p><%- taskSubmition.description %></p>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+
+</body>
+<script src="/js/task-desc.js"></script>
+<script>
+    const angle_down = document.querySelectorAll('.file-sender .fas')
+    // console.log(angle_down);
+    for(let element of angle_down){
+        element.addEventListener('click', e => {
+            const parentTarget = e.target.parentElement.parentElement;
+            // console.log(e.target);
+            let descriptionDisplay = parentTarget.childNodes[parentTarget.childNodes.length - 2]
+            if(descriptionDisplay.style.display == "none"){
+                e.target.classList.remove('fa-angle-right')
+                e.target.classList.add('fa-angle-down')
+                descriptionDisplay.style.display = "block"
+            } else {
+                e.target.classList.remove('fa-angle-down')
+                e.target.classList.add('fa-angle-right')
+                descriptionDisplay.style.display = "none"
+            }
+        })
+    }
+</script>
+
+<script>
+
+const showLoading = async (message) => {
+    const uploadNotif = document.getElementById('upload-notification');
+    uploadNotif.style.display = 'block';
+    document.getElementById('file-submition').disabled = true;
+    document.getElementById('task-submition').disabled = true;
+    // if(message){
+    //     uploadNotif.innerHTML = `
+    //         <i class="fa-solid fa-exclamation-circle"></i>
+    //         <span>${message}</span>
+    //     `
+    // }
+}
+
+const hideLoading = async(message, color) => {
+    const uploadNotif = document.getElementById('upload-notification');
+    if(message){
+        uploadNotif.style.borderColor = color;
+        uploadNotif.style.color = color;
+        uploadNotif.innerHTML = `
+            <i class="fa-solid fa-exclamation-circle"></i>
+            <span>${message}</span>
+        `
+    } else {
+        uploadNotif.style.borderColor = 'green';
+        uploadNotif.style.color = 'green';
+        uploadNotif.innerHTML = `
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Upload Done</span>
+        `
+    }
+    document.getElementById('file-submition').disabled = false;
+    document.getElementById('task-submition').disabled = false;
+    await setTimeout(() => {
+        uploadNotif.style.display = 'none';
+        uploadNotif.style.borderColor = 'black';
+        uploadNotif.style.color = 'black';
+        uploadNotif.innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            <span>Wait, Your File Being Uploaded</span>
+        `
+    }, 2000)
+    
+}
+
+const listOfSubmittedData = [];
+
+const uploadDFileata = async (data) => {
+    const response = await fetch('/api/<%= team_id %>/upload/<%= task.id %>', {
+        method : 'POST',
+        body : data
+    })
+    const outputData = await response.json();
+    return outputData;
+}
+
+const deleteThisFile = async (e) => {
+    const taskPath = e.parentElement.getAttribute('data');
+    // console.log(`/api/<%= team_id %>/delete/file/<%= task.id %>?file_name=${taskPath}`);
+    const response = await fetch(`/api/<%= team_id %>/delete/file/<%= task.id %>?file_name=${taskPath}`, {
+        method : "DELETE"
+    })
+    const resJson = await response.json();
+    if(resJson.message == "success"){
+        // await hideLoading('Your file has been deleted', 'green');
+        e.parentElement.remove() 
+        if(listOfSubmittedData.indexOf(taskPath) != -1){
+            listOfSubmittedData.splice(listOfSubmittedData.indexOf(taskPath), 1);
+        }
+    } else {
+        await hideLoading(resJson.error, 'red');
+    }
+}
+
+const deleteProcess = async(e) => {
+    const deleteAgreement = await swal({
+        title: "Are you sure you want to delete this file?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    if(deleteAgreement) {
+        swal("Your file successfully deleted", {
+            icon: "success",
+        });
+        await deleteThisFile(e)
+    }  
+}
+
+document.getElementById('file-submition').addEventListener('change', async(e) => {
+    const userFile = document.getElementById('file-submition').files;
+        for(let i = 0; i < userFile.length; i++){
+            const dataWak = new FormData();
+            const file = userFile[i];
+            dataWak.append('task-file', file, file.name);
+            
+            showLoading();
+            const uploadedData = await uploadDFileata(dataWak);
+            // console.log(uploadedData);
+            if(uploadedData.error != null){
+                await hideLoading(uploadedData.error, 'red')
+            } else {
+                await hideLoading();
+                listOfSubmittedData.push(uploadedData);
+            }
+
+            const uploadedFileContainer = document.getElementById('uploaded-file');
+
+            for(let file of listOfSubmittedData){
+                let skipThis = false;
+                for(let child of uploadedFileContainer.children){
+                    if(child.getAttribute('data') == file.path){
+                        skipThis = true;
+                        break;
+                    }
+                }
+                if(skipThis){
+                    continue;
+                }
+                const element = document.createElement('div');
+                element.className = 'file-display';
+                element.setAttribute('class', 'file-display');
+                element.setAttribute('data', file.path)
+                element.innerHTML += `
+                    <i class="far fa-file" id="file-type"></i>
+                `;
+                const name = file.fileName
+                const type = `${file['content-type'].split('/').join(" ")} File`
+                element.innerHTML += `
+                <div class="file-data">
+                    <a>${name}</a>
+                    <span style="">${type}</span>
+                </div>
+                <i class="fas fa-x delete-file" onclick="deleteProcess(this)"></i>
+                `;
+                uploadedFileContainer.appendChild(element);
+            }
+
+        }
+})
+
+document.getElementById('task-submition').addEventListener('click', async(e) => {
+    e.preventDefault();
+    // console.log(JSON.parse(listOfSubmittedData));
+    console.log(document.getElementById('descriptition').value);
+    if(listOfSubmittedData.length != 0){
+        const response = await fetch('/api/<%= team_id %>/submit/<%= task.id %>', {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                data : listOfSubmittedData,
+                description : document.getElementById('descriptition').value 
+            })
+        })
+        const url = await response.text();
+        // console.log(url);
+        window.location.assign(url)
+    } else {
+        document.getElementById('upload-notification').style.display = 'block';
+        await hideLoading('Upload your work files before submitting', 'red' )
+    }
+})
+
+</script>
+</html>

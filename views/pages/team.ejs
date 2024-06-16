@@ -12,7 +12,7 @@
         <header>
             <nav>
                 <a href="/my-team"><i class="fas fa-arrow-left"></i></a>
-                <h4>Perjalanan Mencari Rempah-Rempah di Sekitar Wonogiri</h4>
+                <h4><%- team_name %></h4>
                 <% if (isAdmin) { %>
                     <a href="/<%= team_id %>/add/tasks"><i class="fas fa-plus"></i></a>
                 <% } %>
@@ -44,8 +44,8 @@
                         Add Tasks
                     </a>
                     <a href="" class="add-task">
-                        <i class="fas fa-check"></i>
-                        Finish Team
+                        <i class="fas fa-gear"></i>
+                        Edit Teams
                     </a>
                 </div>
             <% } %>
@@ -55,7 +55,7 @@
                 <h1 style="text-align: center; width: 70%; padding-top: 30px; color: gray; font-weight: bold;">No Assignments added yet</h1>
             <% } %>
             <% tasksData.forEach(task => { %>
-                <div class="team-task">
+                <div class="team-task" onclick="window.location.assign('/<%= team_id %>/task/<%= task.id %>')">
                     <div class="deadline">
                         <%- task.deadline %>
                     </div>

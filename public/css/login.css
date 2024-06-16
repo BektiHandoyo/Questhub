@@ -185,8 +185,8 @@ button {
 
 
 .google-button {
-    width: 100%;
-    max-width: 280px;
+    width: 85%;
+    /* max-width: 280px; */
     display: flex;
     justify-content: center;
     align-items: center;

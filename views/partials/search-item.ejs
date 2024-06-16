@@ -1,6 +1,6 @@
 <% users.forEach(user => { %>
     <div onclick="window.location.assign('/api/<%= room_id %>/add/member?user=<%= user.id %>')" style="display: flex;padding: 10px 0;border-top: 1px solid gray;">
-        <img style="width: 50px; height: 50px; border-radius: 50%;" src="/img/profile-picture/default.png" alt="">
+        <img style="width: 50px; height: 50px; border-radius: 50%;" src="/img/home/9f9936fa68f41c17b224a071bea60ef2.png" alt="">
         <div style="margin-left: 10px;">
             <h3 style="height: 28px; overflow-y: hidden;text-overflow: ellipsis;"><%- user.name %></h3>
             <p style="color: gray; font-weight: bold;height: 25px; overflow-y: hidden;text-overflow: ellipsis;"><%- user.email %></p>

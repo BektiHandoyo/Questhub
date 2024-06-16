@@ -13,85 +13,76 @@
             </header>
             <div class="main">
                 <div class="main-container">
-                    <div id="incoming-deadline">
-                        <h4>Incoming Deadline</h4>
-                        <div class="assignment">
-                            <p class="team-name">Makalah Sejarah</p>
-                            <p>You, Dhavin, Bekti, Indra</p>
-                        </div>
-                        <div class="progress">
-                            <p>Progress</p>
-                            <progress id="file" value="75" max="100"></progress>
-                            <p class="value">75%</p>
-                        </div>
-                    </div>
+                    <% if (incomingDeadline.length != 0) { %>
+                        <div id="incoming-deadline" onclick="showDrawer(this)">
+                            <div>
+                                <h3>
+                                    Incoming Deadline, 
+                                </h3>
+                                <span class="deadline"><%= incomingDeadline[0].deadline %></span>
+                            </div>
+                            <div class="assignment">
+                                <h3 class="team-name"><%= incomingDeadline[0].room_name %></h3>
+                                <p  class="task-name"><%= incomingDeadline[0].task_name %></p>
+                                <p class="worker">You, <% incomingDeadline[0].worker.forEach(name => { %>
+                                    <%= name %>
+                                <% }) %></p>
+                            </div>
+                            <div class="progress">
+                                <p>Progress</p>
+                                <progress id="file" value="<%= incomingDeadline[0].progression %>" max="100"></progress>
+                                <p class="value"><%= incomingDeadline[0].progression %>%</p>
+                            </div>
+                            <div class="hidden" style="display: none;">
+                                <div class="task-desc"><%= incomingDeadline[0].description %></div>
+                                <div class="total-worker"><%= incomingDeadline[0].worker.length %></div>
+                                <div class="task-url"><%= `/${incomingDeadline[0].room_id}/task/${incomingDeadline[0].task_id}` %></div>
+                                <div class="worker-image"><%= JSON.stringify(incomingDeadline[0].workerImage) %></div>
+                            </div>
+                        </div> 
+                    <% } %>
                     <div class="ongoing-project">
-                        <div class="ongoing-container">
+                        <% if (incomingDeadline.length > 1) { %>
+                            <div class="ongoing-container">
                             <div class="ongoing-menu">
-                                <span class="headline">Proyek Berjalan</span>
-                                <a href="#">Lihat Semua</a>
+                                <span class="headline">Ongoing Project</span>
+                                <a href="#">See More</a>
                             </div>
+                            <% const colorList = ['#FFC15B', '#8ECAE6', '#F7688C', '#829CBC'] %>
                             <div class="ongoing-content">
-                                <div class="ongoing-items" style="background-color: #FFC15B;">
-                                    <div class="items-menu">
-                                        <span class="deadline">27 Oct, 2024</span>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </div>
-                                    <div class="items-profile">
-                                        <h4>Makalah Sejarah</h4>
-                                        <p>You, Dhavin, Raya, Indra</p>
-                                    </div>
-                                    <div class="progress">
-                                        <p>Progress</p>
-                                        <progress id="file" value="75" max="100"></progress>
-                                        <p class="value">75%</p>
-                                    </div>
-                                </div>
-                                <div class="ongoing-items" style="background-color: #8ECAE6;">
-                                    <div class="items-menu">
-                                        <span class="deadline">27 Oct, 2024</span>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </div>
-                                    <div class="items-profile">
-                                        <h4>Prototype PKK</h4>
-                                        <p>You, Dhavin, Raya, Indra</p>
-                                    </div>
-                                    <div class="progress">
-                                        <p>Progress</p>
-                                        <progress id="file" value="75" max="100"></progress>
-                                        <p class="value">75%</p>
-                                    </div>
-                                </div>
-                                <div class="ongoing-items" style="background-color: #F7688C;">
-                                    <div class="items-menu">
-                                        <span class="deadline">27 Oct, 2024</span>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </div>
-                                    <div class="items-profile">
-                                        <h4>Sesorah Basa Jawa</h4>
-                                    </div>
-                                    <div class="progress">
-                                        <p>Progress</p>
-                                        <progress id="file" value="75" max="100"></progress>
-                                        <p class="value">75%</p>
-                                    </div>
-                                </div>
-                                <div class="ongoing-items" style="background-color: #829CBC;">
-                                    <div class="items-menu">
-                                        <span class="deadline">27 Oct, 2024</span>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </div>
-                                    <div class="items-profile">
-                                        <h4>Makalah Sejarah</h4>
-                                    </div>
-                                    <div class="progress">
-                                        <p>Progress</p>
-                                        <progress id="file" value="75" max="100"></progress>
-                                        <p class="value">75%</p>
-                                    </div>
+                                
+                                    <% for( let i = 0; i < colorList.length; i++ ) { %>
+                                        <% if (incomingDeadline[i+1] == null) { break; }%>
+                                        <div class="ongoing-items" onclick="showDrawer(this)" style="background-color: <%= colorList[i] %>;">
+                                            <div class="items-menu">
+                                                <span class="deadline"><%= incomingDeadline[i+1].deadline %></span>
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </div>
+                                            <div class="assignment">
+                                                <h3 class="team-name"><%= incomingDeadline[i+1].room_name %></h3>
+                                                <p class="task-name"><%= incomingDeadline[i+1].task_name %></p>
+                                                <p class="worker">You, <% incomingDeadline[i+1].worker.forEach(name => { %>
+                                                    <%= name %>
+                                                <% }) %></p>
+                                            </div>
+                                            <div class="progress">
+                                                <p>Progress</p>
+                                                <progress id="file" value="<%= incomingDeadline[i+1].progression %>" max="100"></progress>
+                                                <p class="value"><%= incomingDeadline[i+1].progression %>%</p>
+                                            </div>
+                                            <div class="hidden" style="display: none;">
+                                                <div class="task-desc"><%= incomingDeadline[i+1].description %></div>
+                                                <div class="total-worker"><%= incomingDeadline[i+1].worker.length %></div>
+                                                <div class="task-url"><%= `/${incomingDeadline[i+1].room_id}/task/${incomingDeadline[i+1].task_id}` %></div>
+                                                <div class="worker-image"><%= JSON.stringify(incomingDeadline[i+1].workerImage) %></div>
+                                            </div>
+                                        </div>
+                                    <% } %> 
                                 </div>
                             </div>
-                        </div>
+                        <% } else { %>
+                            <h1 style="color: gray;text-align: center;">There are no Ongoing Project</h1>
+                        <% } %>    
                     </div>
                 </div>
             </div>
@@ -100,12 +91,16 @@
                     <i class="fa-solid fa-xmark" id="drawer-close"></i>
                     <div class="drawer-content">
                         <h2 class="drawer-title">Makalah Sejarah</h2>
+                        <p class="task-deadline"></p>
                         <div class="drawer-profile">
-                            <img src="/img/home/9f9936fa68f41c17b224a071bea60ef2.png" alt="">
-                            <span class="profile-leader">Koala Wilson</span>
-                            <a href="">and 5 more</a>
+                            <div class="member-profile">
+
+                            </div>
+                            <!-- <img src="/img/home/9f9936fa68f41c17b224a071bea60ef2.png" alt=""> -->
+                            <span class="profile-leader">You</span>
+                            <spana class="total-worker">and 5 more</spana>
                         </div>
-                        <p>
+                        <p class="description">
                             Setelah Jepang menyerah pada 14 Agustus 1945, Indonesia menghadapi periode transisi yang penting dalam perjuangan merebut kemerdekaan. Pasukan Sekutu tiba di Indonesia, mengendalikan berbagai wilayah. Namun, hubungan antara pihak Sekutu dan Republik Indonesia semakin tegang, terutama karena upaya Belanda untuk mengendalikan wilayah dan mengembalikan kekuasaan kolonialnya.
                         </p>
                         <a href="#" class="detail-button">See Detail</a>
@@ -115,5 +110,54 @@
         </main>
     </div>
 </body>
-<script src="/js/drawer-home.js"></script>
+<script>
+const ongoingItmes = document.getElementsByClassName('ongoing-items')
+const drawerClose = document.getElementById('drawer-close');
+const incomingDeadline = document.getElementById('incoming-deadline');
+
+
+const showDrawer = (e) => {
+    const drawer = document.getElementById('drawer');
+    
+    const taskDesc = e.querySelector('.hidden .task-desc').innerHTML;
+    const taskName = e.querySelector('.task-name').innerHTML;
+    const totalWorker = e.querySelector('.hidden .total-worker').innerHTML;
+    const taskUrl = e.querySelector('.hidden .task-url').innerHTML;
+    const workersImage = JSON.parse(e.querySelector('.hidden .worker-image').innerHTML);
+    const taskDeadline = e.querySelector('.deadline').innerHTML;
+    console.log(taskDeadline);
+    // const taskDeadline = 
+
+    // console.log(drawer.querySelector('drawer-title'));
+    drawer.querySelector('.drawer-title').innerHTML = taskName;
+    drawer.querySelector('.description').innerHTML = taskDesc;
+
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    drawer.querySelector('.task-deadline').innerHTML = `${weekday[new Date(taskDeadline).getDay()]}, ${taskDeadline}`;
+
+    if (totalWorker != 0) {
+        drawer.querySelector('.total-worker').innerHTML = `and ${totalWorker} More`
+    } else {
+        drawer.querySelector('.total-worker').innerHTML = ``
+    }
+
+    workersImage.forEach(element => {
+        const workerImageElement = document.createElement('img');
+        workerImageElement.src = `<%= imageURL %>${element}`;
+        drawer.querySelector('.member-profile').appendChild(workerImageElement)
+    });
+
+    drawer.querySelector('.detail-button').href = taskUrl
+
+    // drawer.querySelector('.drawer-title').innerHTML = "Ho"
+    drawer.style.display = "block";    
+}
+
+drawerClose.onclick = function(e) {
+    const drawer = document.getElementById('drawer');
+    drawer.querySelector('.member-profile').innerHTML = ''
+    drawer.style.display = "none";
+};
+
+</script>
 </html> 

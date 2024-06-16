@@ -1,9 +1,9 @@
 const Rooms = require("../models/Rooms");
 
 const checkAdmin = async(req, res, next) => {
-    console.log(req.params);
+    // console.log(req.params);
     const {team_id} = req.params;
-    console.log(team_id);
+    // console.log(team_id);
     const {userId} = req.session;
     const room = await Rooms.findOne({
         where : {
